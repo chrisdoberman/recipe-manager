@@ -2,7 +2,6 @@ package com.internal.recipes;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -12,9 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.internal.recipes.domain.Recipe;
 import com.internal.recipes.service.RecipeService;
 
 /**
@@ -45,12 +42,6 @@ public class HomeController {
 		model.addAttribute("recipes", recipeService.getAllRecipes().get(0).getTitle());
 		
 		return "home";
-	}
-	
-	@RequestMapping(value = "/recipes", method = RequestMethod.GET)
-	public @ResponseBody List<Recipe> getAllRecipes() {
-		logger.info("Reqest to get all recipes.");
-		return recipeService.getAllRecipes();
 	}
 	
 }
