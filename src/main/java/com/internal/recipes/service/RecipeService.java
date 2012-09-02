@@ -15,9 +15,34 @@ public class RecipeService {
 	RecipeRepository recipeRepository;
 	
 	public List<Recipe> getAllRecipes() {
-		return recipeRepository.getAllRecipes();
+		return recipeRepository.findAll();
 	}
 	
-	// additional business methods here
+	public Recipe create(Recipe recipe) {
+		return recipeRepository.save(recipe);
+	}
+	
+	public Boolean delete(Recipe recipe) {
+		if (!recipeRepository.exists(recipe.getRecipeId())) {
+			return false;
+		}
+		
+		recipeRepository.delete(recipe);
+		return true;
+	}
+	
+	public Recipe update(Recipe recipe) {
+		if (!recipeRepository.exists(recipe.getRecipeId())) {
+			return null;
+		}
+		return recipeRepository.save(recipe);
+	}
+	
+	public Recipe get(String id) {
+		if (!recipeRepository.exists(id)) {
+			return null;
+		}
+		return recipeRepository.findOne(id);
+	}
 
 }

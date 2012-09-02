@@ -21,6 +21,9 @@ public class Recipe {
 		this.notes = notes;
 	}
 
+	public Recipe() {
+	}
+
 	public String getRecipeId() {
 		return recipeId;
 	}

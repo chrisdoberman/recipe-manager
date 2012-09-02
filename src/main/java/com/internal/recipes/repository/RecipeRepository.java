@@ -2,22 +2,23 @@ package com.internal.recipes.repository;
 
 import java.util.List;
 
+import org.springframework.data.repository.RepositoryDefinition;
+
 import com.internal.recipes.domain.Recipe;
 
+@RepositoryDefinition(domainClass = Recipe.class, idClass = String.class)
 public interface RecipeRepository {
 
-	public List<Recipe> getAllRecipes();
+	Recipe save(Recipe entity);
 
-	public void createRecipe(Recipe recipe);
+	Recipe findOne(String primaryKey);
 
-	public void updateRecipe(Recipe recipe);
+	List<Recipe> findAll();
 
-	public void deleteRecipe(Recipe recipe);
+	Long count();
 
-	public Recipe getRecipeById(String recipeId);
+	void delete(Recipe entity);
 
-	public void createRecipeCollection();
-
-	public void dropRecipeCollection();
+	boolean exists(String primaryKey);
 
 }
