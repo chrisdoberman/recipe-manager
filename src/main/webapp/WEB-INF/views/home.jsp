@@ -1,17 +1,32 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<!DOCTYPE HTML>
 <html>
 <head>
-	<title>Home</title>
+<title>Recipe Manager</title>
+<link rel="stylesheet" href="resources/css/styles.css" />
 </head>
+
 <body>
-<h1>
-	Hello world!  
-</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<div id="header"></div>
 
-<P>  Here is a recipe title: ${recipes} </P>
+<div id="sidebar"></div>
+
+<div id="content">
+    <h1>Welcome to My Recipe Manager</h1>
+</div>
+
+<script src="resources/jquery-1.8.1.min.js"></script>
+<script src="resources/underscore-min.js"></script>
+<script src="resources/backbone-min.js"></script>
+
+
+<script src="resources/js/utils.js"></script>
+<script src="resources/js/models/winemodel.js"></script>
+<script src="resources/js/views/header.js"></script>
+<script src="resources/js/views/winelist.js"></script>
+<script src="resources/js/views/winedetails.js"></script>
+<script src="resources/js/main.js"></script>
 
 </body>
+
 </html>

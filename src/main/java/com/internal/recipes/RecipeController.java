@@ -34,7 +34,7 @@ public class RecipeController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody Recipe getRecipe(@PathVariable("id") final String id) {
-		logger.info("Request to get one recipe");
+		logger.info("Request to get one recipe with id: {}", id);
 		return recipeService.get(id);
 	}
 
