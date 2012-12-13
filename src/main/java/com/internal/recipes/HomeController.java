@@ -39,7 +39,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		model.addAttribute("recipes", recipeService.getAllRecipes().get(0).getTitle());
+		model.addAttribute("recipes", recipeService.getAllRecipes());
 		
 		return "home";
 	}

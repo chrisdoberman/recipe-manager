@@ -47,9 +47,9 @@ public class RecipeController {
 
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public void update(@RequestBody final Recipe entity) {
+	public @ResponseBody Recipe update(@RequestBody final Recipe entity) {
 		logger.info("Request to update a recipe");
-		recipeService.update(entity);
+		return recipeService.update(entity);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

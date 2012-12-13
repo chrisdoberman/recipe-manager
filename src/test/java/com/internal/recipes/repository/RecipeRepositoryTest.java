@@ -51,12 +51,12 @@ public class RecipeRepositoryTest {
 		
 	}
 	
-	//@Test
+	@Test
 	public void createTestData() {
-		Recipe recipe = new Recipe("first recipe name", "test description", "http://blah.com", "using interface");
+		Recipe recipe = new Recipe("3rd recipe name", "test description", "http://blah.com", "using interface");
 		recipeRepository.save(recipe);
 		
-		recipe = new Recipe("second recipe name", "test description 2", "http://blah2.com", "using interface2");
+		recipe = new Recipe("4th recipe name", "test description 2", "http://blah2.com", "using interface2");
 		recipeRepository.save(recipe);
 	}
 	

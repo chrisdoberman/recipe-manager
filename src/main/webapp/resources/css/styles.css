@@ -1,6 +1,15 @@
 * {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-size: 12px;
+}
+
+body {
+  margin: 0; 
+  font-size: 13px; 
+  line-height: 1.231;  
+  background-color: #8291af;
+  background-image:url(../images/pageBackground.jpg);
+  background-repeat:repeat;
 }
 
 #header {
@@ -9,20 +18,17 @@
 
 #sidebar {
 	position: absolute;
-	left: 10px;
+	left: 50px;
 	top: 70px;
 	bottom: 20px;
-	width: 260px;
+	width: 860px;
 	border:solid 1px #CCCCCC;
 	overflow-y: scroll;
 }
 
 #content {
-    position: absolute;
-   	top: 70px;
-   	bottom: 20px;
-   	left:300px;
-   	right:20px;
+    display: table;
+    margin: 0 auto;
 }
 
 .form-left-col {
@@ -52,11 +58,6 @@ li a:hover {
 	color: #BA8A92;
 }
 
-input, textarea {
-  border:1px solid #ccc;
-  min-height:30px;
-  outline: none;
-}
 
 .form-left-col input {
   margin-bottom:15px;
@@ -64,12 +65,6 @@ input, textarea {
   width:280px;
 }
 
-textarea {
-	margin-bottom:15px;
-  	margin-top:5px;
-	height: 200px;
-  	width:250px;
-}
 
 label {
 	display:block;
