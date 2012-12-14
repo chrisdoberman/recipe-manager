@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.internal.recipes.domain.Recipe;
+import com.internal.recipes.service.RecipeDoesNotExistException;
 import com.internal.recipes.service.RecipeService;
 
 @Controller
@@ -33,7 +36,7 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public @ResponseBody Recipe getRecipe(@PathVariable("id") final String id) {
+	public @ResponseBody Recipe getRecipe(@PathVariable("id") final String id) throws RecipeDoesNotExistException {
 		logger.info("Request to get one recipe with id: {}", id);
 		return recipeService.get(id);
 	}
@@ -47,18 +50,26 @@ public class RecipeController {
 
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Recipe update(@RequestBody final Recipe entity) {
+	public @ResponseBody Recipe update(@RequestBody final Recipe entity) throws RecipeDoesNotExistException{
 		logger.info("Request to update a recipe");
 		return recipeService.update(entity);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public void deleteRecipe(@PathVariable("id") final String id) {
+	public void deleteRecipe(@PathVariable("id") final String id) throws RecipeDoesNotExistException{
 		logger.info("Request to delete a recipe");
 		Recipe recipe = new Recipe();
 		recipe.setRecipeId(id);
 		recipeService.delete(recipe);
 	}
+	
+    @ExceptionHandler({RecipeDoesNotExistException.class})
+    ResponseEntity<String> handleNotFounds(Exception e) {
+    	logger.error(e.getMessage());
+        return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+
 
 }

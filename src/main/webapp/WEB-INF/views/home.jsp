@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/base/jquery-ui.css" />
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/pepper-grinder/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<link rel="stylesheet" href="resources/css/demo_table_jui.css" />
 
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js" type="text/javascript"></script>
@@ -41,13 +42,14 @@
   .ui-widget { font-family: segoe ui, Arial, sans-serif; font-size: .95em; }
 </style>
 
+<div class="demo_jui" style="margin:20px;" >
 <div id="recipeForm" title="" style="display:none;margin-top:5px;">
-  <div id="recipeFormErrors" style="display:none;margin:0px;"></div>
-  <table width="100%" cellspacing="0" cellpadding="0"><tbody>
+  <div id="recipeFormErrors" style="display:none;margin:0px;"><div class="error"></div></div>
+  <table width="100%" class="display" cellspacing="0" cellpadding="0"><tbody>
     <tr><td><b>Title</b></td><td><b>URL</b></td></tr>
     <tr>
-      <td valign="top"><input type="text" id="recipeTitle" size="30" value=""/></td>
-      <td valign="top"><input type="text" id="recipeUrl" size="60" value=""/></td>
+      <td valign="top"><input type="text" required id="recipeTitle" size="55" value=""/></td>
+      <td valign="top"><input type="url" id="recipeUrl" placeholder="http://www.baltimoreravens.com" size="60" value=""/></td>
     </tr>
     <tr style="height:10px;"><td colspan="3"></td></tr>
     <tr><td colspan="3"><b>Notes</b></td></tr>
@@ -56,6 +58,7 @@
     <tr><td colspan="3"><b>Description</b></td></tr>
     <tr><td colspan="3"><textarea rows="8" cols="100" title="Enter a brief description"  id="recipeDescription"  value=""></textarea></td></tr>
   </tbody></table>
+</div>
 </div>
 
 <div id="recipeDeleteForm" title="" style="display:none;margin-top:5px;">
@@ -77,6 +80,7 @@ $(document).ready(function () {
 
 	recipesTable = $('#recipesTable').dataTable({
 	    "bJQueryUI": true,
+	    "iDisplayLength": 25,
 	    "sPaginationType": "full_numbers",
 	    "sDom": '<"fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"lfr>t<"fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix"ip>'
 	  });
@@ -122,7 +126,7 @@ function recipeFormInit() {
 	      autoOpen: false,
 	      position:['middle',20],
 	      width: 725,
-	      height: 400,
+	      height: 425,
 	      modal: true,
 	      resizable: false,
 	      buttons: {
@@ -197,6 +201,11 @@ function processGetRecipeResults(recipe){
 }
 
 function processSubmit() {
+	if (! validate()) {
+		$("#recipeFormErrors").show();
+	    return;
+	}
+
 	recipe = new Object();
 	recipeId = $("#recipeId").val();
 	recipe.title =  $("#recipeTitle").val();
@@ -257,6 +266,17 @@ function processDeleteRecipeSubmitResults(data, recipeId) {
 	  }
 	}
 }
+
+function validate() {
+	 $("#recipeFormErrors").html("");
+	 var returnVal = true;
+	 if ($("#recipeTitle").val() == "") {
+	   $("#recipeFormErrors").append("<div class=\"error\">Please enter the Recipe <b>Title</b>.</div>");
+	   returnVal = false;
+	 }	 
+	 return returnVal;
+}
+
  </script>
  
  </html>

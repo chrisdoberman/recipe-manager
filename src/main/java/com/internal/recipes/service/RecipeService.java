@@ -38,11 +38,10 @@ public class RecipeService {
 		return recipeRepository.save(recipe);
 	}
 	
-	public Recipe get(String id) {
-		if (!recipeRepository.exists(id)) {
-			return null;
+	public Recipe get(String id) throws RecipeDoesNotExistException {
+		if (! recipeRepository.exists(id)) {
+			throw new RecipeDoesNotExistException(id);
 		}
 		return recipeRepository.findOne(id);
 	}
-
 }
