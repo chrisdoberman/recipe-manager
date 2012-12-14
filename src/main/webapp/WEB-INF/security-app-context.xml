@@ -1,0 +1,28 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                    http://www.springframework.org/schema/security 
+                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <http pattern="/css/**" security="none" /> 
+    <http pattern="/images/**" security="none" /> 
+ 
+    <http use-expressions="true">
+	    <intercept-url pattern="/index.jsp" access="permitAll" />
+ 		<intercept-url pattern="/**" access="hasRole('administrator')" />
+        <form-login />
+        <logout />
+    </http>
+
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="mherb" password="havefun" authorities="administrator,supervisor,user,customer" />
+                <user name="cherb" password="cherb" authorities="administrator,supervisor,user,customer" />
+                <user name="rherb" password="havefun" authorities="user" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>   

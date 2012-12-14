@@ -70,6 +70,4 @@ public class RecipeController {
         return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-
-
 }

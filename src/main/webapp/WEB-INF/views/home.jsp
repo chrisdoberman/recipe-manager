@@ -19,7 +19,8 @@
 
 <div id="content" style="width:90%;">
     <h1>Welcome to My Recipe Manager</h1>
-    <div style="float:right;margin:10px;"><button id="addRecipe">Add Recipe</button></div>  
+	<div style="float:left;margin:10px;"><button id="logoutButton">Logout</button></div>  
+    <div style="float:right;margin:10px;"><button id="addRecipeButton">Add Recipe</button></div>  
 
 	<table border="0" class="display" id="recipesTable" >
 	  <caption class="fg-toolbar ui-widget-header"><h2 style="margin:5px;">Recipes</h2></caption>
@@ -37,6 +38,8 @@
 	</tbody>
 	</table>
 </div>
+
+
 
 <style type="text/css">
   .ui-widget { font-family: segoe ui, Arial, sans-serif; font-size: .95em; }
@@ -74,8 +77,10 @@
  var recipesTable;
  
 $(document).ready(function () {
-  $("#addRecipe").button();
-  $("#addRecipe").click(function() { showRecipeForm(0); return false; });
+  $("#addRecipeButton").button();
+  $("#addRecipeButton").click(function() { showRecipeForm(0); return false; });
+  $("#logoutButton").button();
+  $("#logoutButton").click(function() { location.href = 'j_spring_security_logout'; });
   recipeFormInit();
 
 	recipesTable = $('#recipesTable').dataTable({
