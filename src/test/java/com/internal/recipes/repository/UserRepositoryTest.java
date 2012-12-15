@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
+import com.internal.recipes.domain.Role;
 import com.internal.recipes.domain.User;
 
 public class UserRepositoryTest {
@@ -32,13 +33,23 @@ public class UserRepositoryTest {
 
 	@After
 	public void tearDown() throws Exception {
-		mt.dropCollection(User.class);
+		//mt.dropCollection(User.class);
 	}
 	@Test
 	public void test() {
 		User user = new User("cherb", "password");
 		userRepository.save(user);
 		assertTrue(userRepository.exists(user.getId()));
+		userRepository.delete(user);
+	}
+	
+	@Test
+	public void createUsers() {
+		User user = new User("cherb", "cherb");
+		user.setFirstName("Chris");
+		user.getRoles().add(Role.ROLE_ADMINISTRATOR);
+		
+		userRepository.save(user);
 	}
 
 }
