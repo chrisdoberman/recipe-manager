@@ -1,7 +1,8 @@
 package com.internal.recipes.repository;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -37,19 +38,21 @@ public class UserRepositoryTest {
 	}
 	@Test
 	public void test() {
-		User user = new User("cherb", "password");
+		User user = new User("testUser", "testPassword");
 		userRepository.save(user);
 		assertTrue(userRepository.exists(user.getId()));
 		userRepository.delete(user);
+		assertNull(userRepository.findByUserName(user.getUserName()));
 	}
 	
-	@Test
+	//@Test
 	public void createUsers() {
 		User user = new User("cherb", "cherb");
 		user.setFirstName("Chris");
 		user.getRoles().add(Role.ROLE_ADMINISTRATOR);
 		
 		userRepository.save(user);
+		
 	}
 
 }

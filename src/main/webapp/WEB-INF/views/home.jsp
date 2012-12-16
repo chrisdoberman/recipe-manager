@@ -1,3 +1,4 @@
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -19,6 +20,7 @@
 
 <div id="content" style="width:90%;">
     <h1>Welcome to My Recipe Manager</h1>
+    Your username is <sec:authentication property="principal.username"/>
 	<div style="float:left;margin:10px;"><button id="logoutButton">Logout</button></div>  
     <div style="float:right;margin:10px;"><button id="addRecipeButton">Add Recipe</button></div>  
 

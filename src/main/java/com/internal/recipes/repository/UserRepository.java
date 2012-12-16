@@ -19,6 +19,6 @@ public interface UserRepository {
 
 	void delete(User user);
 
-	boolean exists(String userName);
-
+	boolean exists(String id);
+	
 }
